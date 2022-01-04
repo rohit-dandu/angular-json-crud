@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": 2,
+      "name": "Zuko",
+      "fromDate": "2022-01-01",
+      "toDate": "2022-01-11",
+      "reason": "sick",
+      "userId": 1,
+      "typeOfLeave": "sick"
+    },
+    {
+      "id": 4,
+      "name": "Azula",
+      "fromDate": "2022-01-01",
+      "toDate": "2022-01-10",
+      "reason": "sick",
+      "userId": 2,
+      "typeOfLeave": "sick"
+    },
+    {
+      "id": 6,
+      "name": "Sokka",
+      "fromDate": "2022-01-01",
+      "toDate": "2022-01-10",
+      "reason": "vacay",
+      "userId": 4,
+      "typeOfLeave": "vacation"
+    },
+    {
+      "name": "Iroh",
+      "fromDate": "2022-01-04",
+      "toDate": "2022-01-05",
+      "reason": "sick",
+      "typeOfLeave": "sick",
+      "id": 9
+    }
+  ]
+}

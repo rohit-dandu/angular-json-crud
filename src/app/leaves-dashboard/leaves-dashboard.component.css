@@ -1,0 +1,19 @@
+:host ::ng-deep p-menubarsub {
+    width: 100%;
+}
+
+.p-field {
+    padding: 0.4rem;
+}
+
+.p-field-radiobutton {
+    padding: 0.1rem;
+}
+
+.card {
+    padding: 2rem;
+}
+
+/* .p-dialog {
+    display: flex;
+} */

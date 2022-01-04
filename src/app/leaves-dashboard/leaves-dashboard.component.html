@@ -1,0 +1,85 @@
+<p-menubar [model]="items">
+    <!-- <ng-template pTemplate="start">
+        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-button-text" (click)="openNew()"></button>
+        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-button-text p-d-inline" (click)="deleteSelectedLeaves()" [disabled]="!selectedLeaves || !selectedLeaves.length"></button>
+    </ng-template> -->
+</p-menubar>
+<p-toast></p-toast>
+
+<div class="card">
+    <p-table #dt [value]="leaves" [rows]="10" [paginator]="true"  [(selection)]="selectedLeaves" [rowHover]="true" dataKey="id" >
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width: 3rem">
+                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            </th>
+            <!-- <th pSortableColumn="id">Id <p-sortIcon field="id"></p-sortIcon></th> -->
+            <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+            <th pSortableColumn="fromDate">From Date <p-sortIcon field="fromDate"></p-sortIcon></th>
+            <th pSortableColumn="toDate">To Date <p-sortIcon field="toDate"></p-sortIcon></th>
+            <th pSortableColumn="reason">Reason <p-sortIcon field="reason"></p-sortIcon></th>
+            <!-- <th pSortableColumn="userId">User ID <p-sortIcon field="userId"></p-sortIcon></th> -->
+            <th pSortableColumn="typeOfLeave">Type of Leave <p-sortIcon field="typeOfLeave"></p-sortIcon></th>
+            <th></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-leave>
+        <tr>
+            <td>
+                <p-tableCheckbox [value]="leave"></p-tableCheckbox>
+            </td>
+            <!-- <td>{{leave.id}}</td> -->
+            <td>{{leave.name}}</td>
+            <td>{{leave.fromDate}}</td>
+            <td>{{leave.toDate}}</td>
+            <td>{{leave.reason}}</td>
+            <!-- <td>{{leave.userId}}</td> -->
+            <td>{{leave.typeOfLeave}}</td>
+            <td>
+                <button pButton pRipple icon="pi pi-pencil" class="p-button-text p-button-success p-mr-2" (click)="editLeave(leave)"></button>
+                <button pButton pRipple icon="pi pi-trash" class="p-button-text p-button-warning" (click)="deleteLeave(leave)"></button>
+            </td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>
+<p-dialog [(visible)]="leaveDialog" [style]="{width: '450px'}" header="Leave Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="name">Name</label>
+            <input type="text" pInputText id="name" [(ngModel)]="leave.name" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !leave.name">Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="fromDate">From Date</label>
+            <input type="date" p-calendar id="fromDate" [(ngModel)]="leave.fromDate" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="toDate">To Date</label>
+            <input type="date" p-calendar id="toDate" [(ngModel)]="leave.toDate" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="reason">Reason</label>
+            <textarea id="description" pInputTextarea [(ngModel)]="leave.reason" required rows="2" cols="20"></textarea>
+        </div>
+        <div class="p-field">
+            <label class="p-mb-3">Type of Leave</label>
+            <div class="p-formgrid p-grid">
+                <div class="p-field-radiobutton p-col-1">
+                    <p-radioButton id="typeOfLeave1" name="typeOfLeave" value="sick" [(ngModel)]="leave.typeOfLeave"></p-radioButton>
+                    <label for="typeOfLeave1">Sick</label>
+                </div>
+                <div class="p-field-radiobutton p-col-1">
+                    <p-radioButton id="typeOfLeave2" name="typeOfLeave" value="vacation" [(ngModel)]="leave.typeOfLeave"></p-radioButton>
+                    <label for="typeOfLeave2">Vacation</label>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveLeave()"></button>
+    </ng-template>
+</p-dialog>
+<p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+<p>leaves-dashboard works!</p>
