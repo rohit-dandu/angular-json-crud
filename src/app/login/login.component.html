@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -6,17 +7,18 @@
                     <h1>LOGIN</h1>
                     <h6>Please sign in.</h6>
                 </div>
-                <form>
+                <form [formGroup]="loginForm" (ngSubmit)="login()">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <span class="text-danger" *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required', 'email')">Email Id is required.</span>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+                        <span class="text-danger" *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required', 'password')">Password is required.</span>
                     </div>
-                    <button type="submit" class="btn btn-dark">Submit</button>
+                    <button [disabled]="!loginForm.valid" type="submit" class="btn btn-dark">Submit</button>
                 </form>
                 <a routerLink="/signup">Need to register? Click here.</a>
             </div>

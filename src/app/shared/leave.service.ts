@@ -12,23 +12,6 @@ export class LeaveService {
   typeOfLeave : string[] = ['sick', 'vacation'];
   constructor(private http: HttpClient) { }
 
-  // async getLeaves() {
-  //   // let url = 'assets/leaves.json'
-  //   // return this.http.get<any>('assets/products.json').pipe()
-  //   // .then(res => <Leave[]>res.data)
-  //   // .then(data => { return data; });
-  //   const res = await fetch('../assets/leaves.json');
-  //   const data = res.json();
-  //   return data;
-  //   console.log(data);
-  // }
-  // getLeaves() {
-  //   return this.http.get<any>('htpps://localhost:3000/')
-  //   .toPromise()
-  //   .then(res => <Leave[]>res.data)
-  //   .then(data => { return data; });
-  // }
-
   getLeaves() {
     return this.http.get<any>(`${this.uri}`)
     .pipe(map((res:any)=>{

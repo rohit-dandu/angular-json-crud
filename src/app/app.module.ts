@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {RouterModule} from '@angular/router';
@@ -30,12 +30,15 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
+
 
 
 import { LeaveService } from './shared/leave.service';
 import { LeavesDashboardComponent } from './leaves-dashboard/leaves-dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserService } from './shared/user.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +55,7 @@ import { SignupComponent } from './signup/signup.component';
     MenubarModule,
     BrowserModule,
     BrowserAnimationsModule,
+    ProgressSpinnerModule,
     TableModule,
     CalendarModule,
 		SliderModule,
@@ -72,12 +76,13 @@ import { SignupComponent } from './signup/signup.component';
     InputNumberModule,
     ConfirmDialogModule,
     InputTextareaModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
       {path:'',component: AppComponent}
 
 		])
   ],
-  providers: [LeaveService, MessageService, ConfirmationService],
+  providers: [LeaveService, MessageService, ConfirmationService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

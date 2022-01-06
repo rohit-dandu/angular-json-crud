@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="container">
     <div class="row">
         <div class="col-md-6">
@@ -5,20 +6,23 @@
                 <div class="text-center">
                     <h1>SIGN UP</h1>
                 </div>
-                <form>
+                <form [formGroup]="signupForm" (ngSubmit)="register()">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name">
+                        <input formControlName="name" type="text" class="form-control" id="name" required>
+                        <span class="text-danger" *ngIf="signupForm.controls['name'].dirty && signupForm.hasError('required', 'name')">Name is required.</span>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1">
+                        <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" required>
+                        <span class="text-danger" *ngIf="signupForm.controls['email'].dirty && signupForm.hasError('required', 'email')">Email Id is required.</span>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
+                        <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" required>
+                        <span class="text-danger" *ngIf="signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')">Password is required.</span>
                     </div>
-                    <button type="submit" class="btn btn-dark">Register</button>
+                    <button [disabled]="!signupForm.valid" type="submit" class="btn btn-dark">Register</button>
                 </form>
                 <a routerLink="/login">Registered? Click here to login.</a>
             </div>

@@ -8,12 +8,18 @@
 
 .p-field-radiobutton {
     padding: 0.1rem;
+    
 }
 
 .card {
-    padding: 2rem;
+    margin: 3rem;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 }
 
 /* .p-dialog {
     display: flex;
+} */
+
+/* .p-table {
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 } */

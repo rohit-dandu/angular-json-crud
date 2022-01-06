@@ -6,6 +6,8 @@ import { Leave } from './leave';
 import { LeaveService } from '../shared/leave.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
+import { UserService } from '../shared/user.service';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-leaves-dashboard',
@@ -22,19 +24,27 @@ export class LeavesDashboardComponent implements OnInit {
 
   items !: MenuItem[];
 
-  constructor(private leaveService: LeaveService, private messageService: MessageService, private confirmationService: ConfirmationService) {
-   }
+  user:any;
 
-
+  constructor(private leaveService: LeaveService, private messageService: MessageService, private confirmationService: ConfirmationService, private userService: UserService, private router: Router) {
+  }
   
   ngOnInit(): void {
     // this.leaveService.getLeaves().then(data => this.leaves = data);
+    
+    this.user = this.userService.getUserDetails();
+    // let loginUser = this.user;
+
+    // localStorage.setItem('loginUser', JSON.stringify(this.user));
+
     this.getLeaveDetails();
     this.items = [
     {
       label: 'New',
       icon:'pi pi-fw pi-plus',
-      command: () => this.openNew()
+      command: () => {
+        this.openNew();
+      }
     },
     {
       label: 'Delete',
@@ -42,22 +52,33 @@ export class LeavesDashboardComponent implements OnInit {
       command: () => this.deleteSelectedLeaves()
     },
     {
-      label: 'username',
+      label: this.user.name,
       icon:'pi pi-fw pi-user',
       items: [
-        {label: 'Logout', icon: 'pi pi-fw pi-power-off'}
+        {label: 'Logout', icon: 'pi pi-fw pi-power-off', routerLink: ['/login'], command: () => {
+          localStorage.clear();
+        }}
       ],
       style: {'margin-left': 'auto'}
     }
     ];
   }
+
   getLeaveDetails() {
     this.leaveService.getLeaves().subscribe(res =>{
-      this.leaves = res;
+      let userLeavesList:any = [];
+      res.filter((l:any) => {
+        if(l.name === this.user.name) {
+          userLeavesList.push(l);
+        }
+        console.log(l);
+      });
+      this.leaves = userLeavesList;
     })
   }
   openNew() {
     this.leave = {};
+    this.leave.name = this.user.name;
     // this.leave.id = this.createId();
     this.submitted = false;
     this.leaveDialog = true;
@@ -84,6 +105,8 @@ export class LeavesDashboardComponent implements OnInit {
 
   editLeave(leave: Leave) {
     this.leave = {...leave};
+    this.leave.name = this.user.name;
+    console.log(this.leave);
     this.leaveDialog = true;
   }
 
@@ -112,6 +135,7 @@ export class LeavesDashboardComponent implements OnInit {
       this.submitted = true;
       if (this?.leave?.name?.trim()) {
           if (this.leave.id) {
+            console.log('In edit leave')
               this.leaves[this.findIndexById(this.leave.id)] = this.leave;
               this.leaveService.editLeave(this.leave).subscribe(
                 () => console.log('Leave updated')
@@ -119,18 +143,19 @@ export class LeavesDashboardComponent implements OnInit {
               this.messageService.add({severity:'success', summary: 'Successful', detail: 'Leave Updated', life: 3000});
           }
           else {
+            console.log('In new leave')
               // this.leave.id = this.createId();
               this.leaves.push(this.leave);
               this.leaveService.submitLeave(this.leave).subscribe(
-                () => console.log('Leave updated')
+                () => console.log('Leave submitted')
               ); 
               this.messageService.add({severity:'success', summary: 'Successful', detail: 'Leave Created', life: 3000});
           }
-
           this.leaves = [...this.leaves];
           this.leaveDialog = false;
           this.leave = {};
       }
+      // location.reload();
   }
 
   findIndexById(id: number): number {

@@ -1,39 +1,86 @@
 {
   "data": [
     {
-      "id": 2,
-      "name": "Zuko",
-      "fromDate": "2022-01-01",
-      "toDate": "2022-01-11",
-      "reason": "sick",
-      "userId": 1,
-      "typeOfLeave": "sick"
-    },
-    {
-      "id": 4,
       "name": "Azula",
-      "fromDate": "2022-01-01",
-      "toDate": "2022-01-10",
-      "reason": "sick",
-      "userId": 2,
-      "typeOfLeave": "sick"
-    },
-    {
-      "id": 6,
-      "name": "Sokka",
-      "fromDate": "2022-01-01",
-      "toDate": "2022-01-10",
-      "reason": "vacay",
-      "userId": 4,
-      "typeOfLeave": "vacation"
-    },
-    {
-      "name": "Iroh",
-      "fromDate": "2022-01-04",
-      "toDate": "2022-01-05",
+      "fromDate": "2022-01-06",
+      "toDate": "2022-01-07",
       "reason": "sick",
       "typeOfLeave": "sick",
-      "id": 9
+      "id": 1
+    },
+    {
+      "name": "Azula",
+      "fromDate": "2022-01-06",
+      "toDate": "2022-01-07",
+      "reason": "vacation",
+      "typeOfLeave": "vacation",
+      "id": 2
+    },
+    {
+      "name": "Zuko",
+      "fromDate": "2022-01-06",
+      "toDate": "2022-01-07",
+      "reason": "find uncle",
+      "typeOfLeave": "vacation",
+      "id": 6
+    },
+    {
+      "name": "Zuko",
+      "fromDate": "2022-01-07",
+      "toDate": "2022-01-08",
+      "reason": "vacation",
+      "typeOfLeave": "vacation",
+      "id": 7
+    }
+  ],
+  "registered": [
+    {
+      "name": "Iroh",
+      "email": "Iroh@firenation.com",
+      "password": "iroh123",
+      "id": 1
+    },
+    {
+      "name": "Zuko",
+      "email": "zuko@firenation.com",
+      "password": "zuko123",
+      "id": 2
+    },
+    {
+      "name": "Suki",
+      "email": "suki@kiyoshi.com",
+      "password": "suki123",
+      "id": 3
+    },
+    {
+      "name": "Aang",
+      "email": "aang@airnomad.com",
+      "password": "papaya",
+      "id": 4
+    },
+    {
+      "name": "Katara",
+      "email": "katara@watertribe.com",
+      "password": "katara123",
+      "id": 5
+    },
+    {
+      "name": "Sokka",
+      "email": "sokka@watertribe.com",
+      "password": "boomerangguy",
+      "id": 6
+    },
+    {
+      "name": "Toph",
+      "email": "toph@earthkingdom.com",
+      "password": "melonlord",
+      "id": 7
+    },
+    {
+      "name": "Azula",
+      "email": "azula@firenation.com",
+      "password": "zuzu",
+      "id": 8
     }
   ]
 }
